@@ -19,7 +19,9 @@
 .ground {
 	background: url("/img/soil.jpg") center / cover no-repeat;
 }
-
+.grass {
+	background: url("/img/grasss.png") center / cover no-repeat;
+}
 .stump {
 	background: url("/img/wood.png") center / cover no-repeat;
 }
