@@ -31,3 +31,6 @@
 .leaves1 {
 	background: url("/img/dark_oak_leaves.png") center / cover no-repeat;
 }
+.cloud {
+	background: url("/img/cloud.png") center / cover no-repeat;
+}

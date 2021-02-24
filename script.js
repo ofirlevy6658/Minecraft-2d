@@ -1,13 +1,13 @@
 const world = document.querySelector(".world");
-let grid = [];
+let grid = []; // all the dives
 const groundHeight = 35; //the top height of ground use to build trees and stuff
-const groundLength = 40;
+const width = 40;
 //
 //init the world grid consists of divs
 const initMatrix = () => {
 	for (let i = 0; i < 40; i++) {
 		grid[i] = [];
-		for (let j = 0; j < groundLength; j++) {
+		for (let j = 0; j < width; j++) {
 			const div = document.createElement("div");
 			div.classList.add("square");
 			grid[i][j] = div;
@@ -18,7 +18,7 @@ const initMatrix = () => {
 
 const initGround = () => {
 	for (let i = groundHeight; i < 40; i++) {
-		for (let j = 0; j < groundLength; j++) {
+		for (let j = 0; j < width; j++) {
 			if (i === groundHeight)
 				//first iteration for grass
 				grid[i][j].classList.add("grass");
@@ -30,7 +30,7 @@ const initGround = () => {
 
 const drawTree = (numOfTree) => {
 	while (numOfTree > 0) {
-		let random = Math.floor(Math.random() * (groundLength - 3)) + 2; // random place on the ground to build tree
+		let random = Math.floor(Math.random() * (width - 3)) + 2; // random place in the ground to build tree
 		let heightTree = Math.floor(Math.random() * 15) + 3;
 		console.log(heightTree);
 		//stump
@@ -46,8 +46,18 @@ const drawTree = (numOfTree) => {
 		numOfTree--;
 	}
 };
-const drawCloud = (numOfCloud) => {};
+const drawCloud = (numOfCloud) => {
+	let randomRow = Math.floor(Math.random() * 5) + 3; // random place in the sky to build cloud
+	let randomCol = Math.floor(Math.random() * (width - 8)) + 4;
+	console.log(randomRow, randomCol);
+	for (let i = 0; i < 3; i++) {
+		for (let j = i; j < 2; j++) {
+			grid[randomRow - i][randomCol + j].classList.add("cloud");
+		}
+	}
+};
 
 initMatrix();
 initGround();
 drawTree(4);
+drawCloud();
