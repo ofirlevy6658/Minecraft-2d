@@ -1,0 +1,31 @@
+.world {
+	width: 70vw;
+	background-color: #87cefa;
+	margin: auto;
+	height: 100vh;
+	/* max-height: 100%;     */
+	display: grid;
+	grid-template-columns: repeat(40, auto);
+	grid-template-rows: repeat(40, auto);
+	grid-gap: 0;
+}
+
+/* normal block */
+.square {
+	height: 100%;
+	width: 100%;
+}
+
+.ground {
+	background: url("/img/soil.jpg") center / cover no-repeat;
+}
+
+.stump {
+	background: url("/img/wood.png") center / cover no-repeat;
+}
+.leaves0 {
+	background: url("/img/tree-leaves.png") center / cover no-repeat;
+}
+.leaves1 {
+	background: url("/img/dark_oak_leaves.png") center / cover no-repeat;
+}
