@@ -64,24 +64,58 @@ drawTree(4);
 drawCloud(12);
 
 // inventroy
+const axe = {
+	ablity: ["stump", "leaves0", "leaves1"],
+	use: "false", //resources
+};
+const shovel = {
+	ablity: ["grass", "ground"],
+	use: "false",
+};
+const pickAxe = {
+	ablity: ["stone"],
+	use: "false",
+};
+const toolArr = [axe, shovel, pickAxe];
 
 const tools = document.querySelectorAll("img");
 // select tool function
 tools.forEach((tool) =>
 	tool.addEventListener("click", () => {
-		console.log(tool);
-		tools.forEach((el) => el.classList.remove("tool-background")); // remove focus from tool
-		tool.classList.add("tool-background"); // add focus to the desire tool
-		document.body.style.cursor = "url('img/axe-tool-outline.svg')";
+		tools.forEach((el) => el.setAttribute("data-current", "false")); // remove focus from tool
+		// document.body.style.cursor = "url('img/axe-tool-outline.svg')";
+		tool.setAttribute("data-current", "true"); //focus to the desire tool
+		//switch on the current tool in use
+		if (tool.getAttribute("data-tool") == "axe") {
+			axe.use = true;
+			shovel.use = false;
+			pickAxe.use = false;
+		} else if (tool.getAttribute("data-tool") == "shovel") {
+			axe.use = false;
+			shovel.use = true;
+			pickAxe.use = false;
+		} else if (tool.getAttribute("data-tool") == "pick-axe") {
+			axe.use = false;
+			shovel.use = false;
+			pickAxe.use = true;
+		}
 	})
 );
 
-// tools.addEventListener("click", (e)=>{
+//lisner for the matrix
+for (let i = 0; i < width; i++) {
+	for (let j = 0; j < width; j++) {
+		grid[i][j].addEventListener("click", mining);
+	}
+}
 
-// }
-
-// const tools = Array.from(document.querySelectorAll(".tool"));
-// const pick = (tool) => {
-// 	currentTool = tool.getAttribute("data-tool");
-
-// };
+function mining(e) {
+	let block = e.target;
+	console.log(block);
+	//check if the tool has the ablity to mine the mineral
+	let currentTool = toolArr.filter((tool) => tool.use); // get the tool that currently in use
+	if (currentTool[0].ablity.includes(block.classList[1])) {
+		block.style.visibility = "hidden";
+		console.log("test");
+	}
+}

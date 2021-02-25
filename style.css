@@ -45,13 +45,12 @@ body {
 	cursor: pointer;
 }
 
-.tool-background {
+[data-current="true"] {
 	background-color: #9c9c9c;
 	zoom: 150%;
 }
-/* [data-current="axe"] {
-	cursor: pointer;
-} */
+/* building-blocks */
+
 /* world css */
 .world {
 	min-width: 1500px;
