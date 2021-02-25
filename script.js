@@ -47,17 +47,20 @@ const drawTree = (numOfTree) => {
 	}
 };
 const drawCloud = (numOfCloud) => {
-	let randomRow = Math.floor(Math.random() * 5) + 3; // random place in the sky to build cloud
-	let randomCol = Math.floor(Math.random() * (width - 8)) + 4;
-	console.log(randomRow, randomCol);
-	for (let i = 0; i < 3; i++) {
-		for (let j = i; j < 2; j++) {
-			grid[randomRow - i][randomCol + j].classList.add("cloud");
+	while (numOfCloud > 0) {
+		let randomRow = Math.floor(Math.random() * 5) + 3; // random place in the sky to build cloud
+		let randomCol = Math.floor(Math.random() * (width - 8)) + 4;
+		console.log(randomRow, randomCol);
+		for (let i = 0; i < 3; i++) {
+			for (let j = i; j < 2; j++) {
+				grid[randomRow - i][randomCol + j].classList.add("cloud");
+			}
 		}
+		numOfCloud--;
 	}
 };
 
 initMatrix();
 initGround();
 drawTree(4);
-drawCloud();
+drawCloud(4);

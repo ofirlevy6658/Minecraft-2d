@@ -1,13 +1,50 @@
+@font-face {
+	font-family: "Minecraft-font";
+	src: url("/font/Minecraft.ttf") format("truetype");
+	font-weight: 300;
+	font-style: normal;
+}
+
+body {
+	display: flex;
+	height: 100vh;
+	font-family: "Minecraft-font";
+}
+/* Inventroy css */
+.inventory {
+	border: black solid 3px;
+	width: 15vw;
+	text-align: center;
+	background-color: #4e71ba;
+}
+.tools {
+	display: flex;
+	flex-direction: column;
+	border: black solid 3px;
+	height: 50%;
+	align-items: center;
+	margin-top: 15%;
+}
+.tools > img {
+	border: black solid 3px;
+	width: 25%;
+	height: 10%;
+}
+.tools > img:hover {
+	background-color: #00fa9a;
+}
+/* world css */
 .world {
-	width: 70vw;
+	min-width: 1500px;
+	width: 85vw;
 	background-color: #87cefa;
 	margin: auto;
-	height: 100vh;
-	/* max-height: 100%;     */
+	height: 100%;
 	display: grid;
 	grid-template-columns: repeat(40, auto);
 	grid-template-rows: repeat(40, auto);
 	grid-gap: 0;
+	/* max-height: 100%; */
 }
 
 /* normal block */
@@ -23,13 +60,14 @@
 	background: url("/img/grasss.png") center / cover no-repeat;
 }
 .stump {
-	background: url("/img/wood.png") center / cover no-repeat;
+	background: url("/img/log_oak.png") center / cover no-repeat;
 }
 .leaves0 {
-	background: url("/img/tree-leaves.png") center / cover no-repeat;
+	background: url("/img/cactus_top.png") center / cover no-repeat;
 }
 .leaves1 {
-	background: url("/img/dark_oak_leaves.png") center / cover no-repeat;
+	background: url("/img/Pink_Big_Oak_Leaves\ \(1\).png") center / cover
+		no-repeat;
 }
 .cloud {
 	background: url("/img/cloud.png") center / cover no-repeat;
