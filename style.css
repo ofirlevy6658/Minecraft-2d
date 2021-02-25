@@ -6,6 +6,7 @@
 }
 
 body {
+	/* cursor: url(img/shovel.png), auto; */
 	display: flex;
 	height: 100vh;
 	font-family: "Minecraft-font";
@@ -15,24 +16,42 @@ body {
 	border: black solid 3px;
 	width: 15vw;
 	text-align: center;
-	background-color: #4e71ba;
+	background-color: #4682b4;
 }
 .tools {
 	display: flex;
 	flex-direction: column;
-	border: black solid 3px;
 	height: 50%;
 	align-items: center;
 	margin-top: 15%;
 }
 .tools > img {
-	border: black solid 3px;
+	border-right: black 2px solid;
+	border-bottom: black 2px solid;
 	width: 25%;
 	height: 10%;
+	margin-bottom: 10%;
 }
 .tools > img:hover {
-	background-color: #00fa9a;
+	background-color: #9c9c9c;
+	zoom: 150%;
+	/* make the images bold creadit to stackoverflow */
+	-webkit-filter: drop-shadow(
+		0 0 5px black
+	); /* webkit only 
+	assuming the content is written in black */
+	filter: drop-shadow(0 0 5px black); /* FF~35 */
+	filter: drop-shadow(0 0 0 5px black); /* MDN */
+	cursor: pointer;
 }
+
+.tool-background {
+	background-color: #9c9c9c;
+	zoom: 150%;
+}
+/* [data-current="axe"] {
+	cursor: pointer;
+} */
 /* world css */
 .world {
 	min-width: 1500px;

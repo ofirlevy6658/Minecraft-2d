@@ -32,7 +32,6 @@ const drawTree = (numOfTree) => {
 	while (numOfTree > 0) {
 		let random = Math.floor(Math.random() * (width - 3)) + 2; // random place in the ground to build tree
 		let heightTree = Math.floor(Math.random() * 15) + 3;
-		console.log(heightTree);
 		//stump
 		for (let i = 0; i < heightTree; i++) {
 			grid[groundHeight - i - 1][random].classList.add("stump");
@@ -50,7 +49,6 @@ const drawCloud = (numOfCloud) => {
 	while (numOfCloud > 0) {
 		let randomRow = Math.floor(Math.random() * 5) + 3; // random place in the sky to build cloud
 		let randomCol = Math.floor(Math.random() * (width - 8)) + 4;
-		console.log(randomRow, randomCol);
 		for (let i = 0; i < 3; i++) {
 			for (let j = i; j < 2; j++) {
 				grid[randomRow - i][randomCol + j].classList.add("cloud");
@@ -63,4 +61,27 @@ const drawCloud = (numOfCloud) => {
 initMatrix();
 initGround();
 drawTree(4);
-drawCloud(4);
+drawCloud(12);
+
+// inventroy
+
+const tools = document.querySelectorAll("img");
+// select tool function
+tools.forEach((tool) =>
+	tool.addEventListener("click", () => {
+		console.log(tool);
+		tools.forEach((el) => el.classList.remove("tool-background")); // remove focus from tool
+		tool.classList.add("tool-background"); // add focus to the desire tool
+		document.body.style.cursor = "url('img/axe-tool-outline.svg')";
+	})
+);
+
+// tools.addEventListener("click", (e)=>{
+
+// }
+
+// const tools = Array.from(document.querySelectorAll(".tool"));
+// const pick = (tool) => {
+// 	currentTool = tool.getAttribute("data-tool");
+
+// };
