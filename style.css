@@ -11,6 +11,9 @@ body {
 	height: 100vh;
 	font-family: "Minecraft-font";
 }
+span {
+	font-size: 1.5rem;
+}
 /* Inventroy css */
 .inventory {
 	border: black solid 3px;
@@ -34,6 +37,7 @@ body {
 }
 .tools > img:hover {
 	background-color: #9c9c9c;
+	cursor: pointer;
 	zoom: 150%;
 	/* make the images bold creadit to stackoverflow */
 	-webkit-filter: drop-shadow(
@@ -42,7 +46,6 @@ body {
 	assuming the content is written in black */
 	filter: drop-shadow(0 0 5px black); /* FF~35 */
 	filter: drop-shadow(0 0 0 5px black); /* MDN */
-	cursor: pointer;
 }
 
 [data-current="true"] {
@@ -52,10 +55,10 @@ body {
 /* building-blocks */
 .building-blocks {
 	border: black solid 3px;
-	height: 25%;
+	height: 15%;
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-template-rows: 1fr;
+	grid-template-columns: repeat(3, auto);
+	grid-template-rows: repeat(3, 50px);
 }
 
 /* world css */

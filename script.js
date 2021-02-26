@@ -31,13 +31,13 @@ const initGround = () => {
 
 const drawTree = (numOfTree) => {
 	const nums = new Set();
+	let random = Math.floor(Math.random() * (width - 3)) + 2; // random place in the ground to build tree
 	while (numOfTree > 0) {
-		let random = Math.floor(Math.random() * (width - 3)) + 2; // random place in the ground to build tree
 		// while (nums.has(random)) {
-		// avoid two trees in the same place
-		// random = Math.floor(Math.random() * (width - 3)) + 2;
+		// 	// avoid two trees in the same place
+		// 	random += Math.random() < 0.5 ? -3 : 3;
 		// }
-		// nums.add(random);
+		nums.add(random);
 		let heightTree = Math.floor(Math.random() * 15) + 3;
 		//stump
 		for (let i = 0; i < heightTree; i++) {
@@ -50,6 +50,7 @@ const drawTree = (numOfTree) => {
 			grid[groundHeight - i][random + 1].classList.add(`leaves${random % 2}`);
 		}
 		numOfTree--;
+		random > 33 ? (random = 3) : (random += 5);
 	}
 };
 const drawCloud = (numOfCloud) => {
@@ -67,7 +68,7 @@ const drawCloud = (numOfCloud) => {
 
 initMatrix();
 initGround();
-drawTree(4);
+drawTree(5);
 drawCloud(12);
 
 // inventroy
@@ -113,11 +114,23 @@ for (let i = 0; i < width; i++) {
 
 function mining(e) {
 	let block = e.target;
-	console.log(block);
+
 	//check if the tool has the ablity to mine the mineral
 	let currentTool = toolArr.filter((tool) => tool.use); // get the tool that currently in use
 	if (!currentTool.length) return; //mean we dont target any tool we stop the running to avoid errors
 	if (currentTool[0].ablity.includes(block.classList[1])) {
 		block.style.visibility = "hidden";
+		currentTool[0][block.classList[1]] === undefined // insert the bulding block to the obejct
+			? (currentTool[0][block.classList[1]] = 1)
+			: currentTool[0][block.classList[1]]++;
+		updateBlockS(block.classList[1], currentTool[0]); //send the name of the block that was click and the obj
 	}
+}
+
+function updateBlockS(block, tool) {
+	console.log(block);
+	let blockId = document.querySelector(`#${block}`);
+	console.log(blockId);
+	console.log(tool[block]);
+	blockId.textContent = `${tool[block]}`;
 }
