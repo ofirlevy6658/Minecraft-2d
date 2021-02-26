@@ -1,9 +1,9 @@
 const world = document.querySelector(".world");
 let grid = []; // all the dives
-const groundHeight = 35; //the top height of ground use to build trees and stuff
-const width = 40;
-const height = 40;
-//
+const groundHeight = 50; //the top height of ground use to build trees and stuff
+const width = 60;
+const height = 60;
+
 //init the world grid consists of divs
 const initMatrix = () => {
 	for (let i = 0; i < height; i++) {
@@ -94,7 +94,12 @@ const pickAxe = {
 	ablity: ["rock"],
 	use: false,
 };
-const toolArr = [axe, shovel, pickAxe];
+const cloudCollecter = {
+	name: "cloud-collecter",
+	ablity: ["cloud"],
+	use: false,
+};
+const toolArr = [axe, shovel, pickAxe, cloudCollecter];
 
 const tools = document.querySelectorAll(".tools > img");
 // select tool function
@@ -104,6 +109,7 @@ tools.forEach((tool) =>
 		// document.body.style.cursor = "url('img/axe-tool-outline.svg')";
 		tool.setAttribute("data-current", "true"); //focus to the desire tool
 		//switch on the current tool in use
+		console.log(tool);
 		toolArr.forEach((el) => {
 			tool.getAttribute("data-tool") == el.name
 				? (el.use = true)
