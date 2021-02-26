@@ -58,7 +58,7 @@ span {
 	height: 15%;
 	display: grid;
 	grid-template-columns: repeat(3, auto);
-	grid-template-rows: repeat(3, 50px);
+	grid-template-rows: repeat(3, 70px);
 }
 
 /* world css */
@@ -98,4 +98,7 @@ span {
 }
 .cloud {
 	background: url("/img/cloud.png") center / cover no-repeat;
+}
+.rock {
+	background: url("/img/rock.png") center / cover no-repeat;
 }

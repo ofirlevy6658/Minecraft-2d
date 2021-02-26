@@ -65,17 +65,24 @@ const drawCloud = (numOfCloud) => {
 		numOfCloud--;
 	}
 };
+function drawRock() {
+	for (let i = 1; i < 30; i++) {
+		grid[groundHeight - i][0].classList.add("rock");
+		grid[groundHeight - i][1].classList.add("rock");
+	}
+}
 
 initMatrix();
 initGround();
 drawTree(5);
 drawCloud(12);
+drawRock();
 
 // inventroy
 const axe = {
 	name: "axe",
 	ablity: ["stump", "leaves0", "leaves1"],
-	use: false, //resources
+	use: false,
 };
 const shovel = {
 	name: "shovel",
@@ -84,12 +91,12 @@ const shovel = {
 };
 const pickAxe = {
 	name: "pick-axe",
-	ablity: ["stone"],
+	ablity: ["rock"],
 	use: false,
 };
 const toolArr = [axe, shovel, pickAxe];
 
-const tools = document.querySelectorAll("img");
+const tools = document.querySelectorAll(".tools > img");
 // select tool function
 tools.forEach((tool) =>
 	tool.addEventListener("click", () => {
@@ -114,21 +121,19 @@ for (let i = 0; i < width; i++) {
 
 function mining(e) {
 	let block = e.target;
-
 	//check if the tool has the ablity to mine the mineral
-	let currentTool = toolArr.filter((tool) => tool.use); // get the tool that currently in use
-	if (!currentTool.length) return; //mean we dont target any tool we stop the running to avoid errors
-	if (currentTool[0].ablity.includes(block.classList[1])) {
+	let currentTool = toolArr.find((tool) => tool.use); // get the tool that currently in use
+	if (!currentTool) return; //mean we dont target any tool we stop the running to avoid errors
+	if (currentTool.ablity.includes(block.classList[1])) {
 		block.style.visibility = "hidden";
-		currentTool[0][block.classList[1]] === undefined // insert the bulding block to the obejct
-			? (currentTool[0][block.classList[1]] = 1)
-			: currentTool[0][block.classList[1]]++;
-		updateBlockS(block.classList[1], currentTool[0]); //send the name of the block that was click and the obj
+		currentTool[block.classList[1]] === undefined // insert the bulding block to the obejct
+			? (currentTool[block.classList[1]] = 1)
+			: currentTool[block.classList[1]]++;
+		updateBlockS(block.classList[1], currentTool); //send the name of the block that was click and the tool
 	}
 }
 
 function updateBlockS(block, tool) {
-	console.log(block);
 	let blockId = document.querySelector(`#${block}`);
 	console.log(blockId);
 	console.log(tool[block]);
