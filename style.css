@@ -50,6 +50,13 @@ body {
 	zoom: 150%;
 }
 /* building-blocks */
+.building-blocks {
+	border: black solid 3px;
+	height: 25%;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 1fr;
+}
 
 /* world css */
 .world {
@@ -84,8 +91,7 @@ body {
 	background: url("/img/cactus_top.png") center / cover no-repeat;
 }
 .leaves1 {
-	background: url("/img/Pink_Big_Oak_Leaves\ \(1\).png") center / cover
-		no-repeat;
+	background: url("/img/Pink-leaves.png") center / cover no-repeat;
 }
 .cloud {
 	background: url("/img/cloud.png") center / cover no-repeat;

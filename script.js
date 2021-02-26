@@ -2,10 +2,11 @@ const world = document.querySelector(".world");
 let grid = []; // all the dives
 const groundHeight = 35; //the top height of ground use to build trees and stuff
 const width = 40;
+const height = 40;
 //
 //init the world grid consists of divs
 const initMatrix = () => {
-	for (let i = 0; i < 40; i++) {
+	for (let i = 0; i < height; i++) {
 		grid[i] = [];
 		for (let j = 0; j < width; j++) {
 			const div = document.createElement("div");
@@ -17,7 +18,7 @@ const initMatrix = () => {
 };
 
 const initGround = () => {
-	for (let i = groundHeight; i < 40; i++) {
+	for (let i = groundHeight; i < height; i++) {
 		for (let j = 0; j < width; j++) {
 			if (i === groundHeight)
 				//first iteration for grass
@@ -29,8 +30,14 @@ const initGround = () => {
 };
 
 const drawTree = (numOfTree) => {
+	const nums = new Set();
 	while (numOfTree > 0) {
 		let random = Math.floor(Math.random() * (width - 3)) + 2; // random place in the ground to build tree
+		// while (nums.has(random)) {
+		// avoid two trees in the same place
+		// random = Math.floor(Math.random() * (width - 3)) + 2;
+		// }
+		// nums.add(random);
 		let heightTree = Math.floor(Math.random() * 15) + 3;
 		//stump
 		for (let i = 0; i < heightTree; i++) {
@@ -65,16 +72,19 @@ drawCloud(12);
 
 // inventroy
 const axe = {
+	name: "axe",
 	ablity: ["stump", "leaves0", "leaves1"],
-	use: "false", //resources
+	use: false, //resources
 };
 const shovel = {
+	name: "shovel",
 	ablity: ["grass", "ground"],
-	use: "false",
+	use: false,
 };
 const pickAxe = {
+	name: "pick-axe",
 	ablity: ["stone"],
-	use: "false",
+	use: false,
 };
 const toolArr = [axe, shovel, pickAxe];
 
@@ -86,19 +96,11 @@ tools.forEach((tool) =>
 		// document.body.style.cursor = "url('img/axe-tool-outline.svg')";
 		tool.setAttribute("data-current", "true"); //focus to the desire tool
 		//switch on the current tool in use
-		if (tool.getAttribute("data-tool") == "axe") {
-			axe.use = true;
-			shovel.use = false;
-			pickAxe.use = false;
-		} else if (tool.getAttribute("data-tool") == "shovel") {
-			axe.use = false;
-			shovel.use = true;
-			pickAxe.use = false;
-		} else if (tool.getAttribute("data-tool") == "pick-axe") {
-			axe.use = false;
-			shovel.use = false;
-			pickAxe.use = true;
-		}
+		toolArr.forEach((el) => {
+			tool.getAttribute("data-tool") == el.name
+				? (el.use = true)
+				: (el.use = false);
+		});
 	})
 );
 
@@ -114,8 +116,8 @@ function mining(e) {
 	console.log(block);
 	//check if the tool has the ablity to mine the mineral
 	let currentTool = toolArr.filter((tool) => tool.use); // get the tool that currently in use
+	if (!currentTool.length) return; //mean we dont target any tool we stop the running to avoid errors
 	if (currentTool[0].ablity.includes(block.classList[1])) {
 		block.style.visibility = "hidden";
-		console.log("test");
 	}
 }
