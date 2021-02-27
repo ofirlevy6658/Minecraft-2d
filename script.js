@@ -71,13 +71,27 @@ function drawRock() {
 		grid[groundHeight - i][1].classList.add("rock");
 	}
 }
+function drawGold() {
+	for (let i = 1; i < 30; i++) {
+		grid[groundHeight - i][40].classList.add("gold");
+		grid[groundHeight - i][41].classList.add("gold");
+	}
+}
+function drawHouse() {
+	for (let i = 1; i < 15; i++) {
+		for (let j = 0; j < 7; j++) {
+			grid[groundHeight - i][52 + j].classList.add("brick");
+		}
+	}
+}
 
 initMatrix();
 initGround();
 drawTree(5);
-drawCloud(12);
+drawCloud(25);
 drawRock();
-
+drawGold();
+drawHouse();
 // inventroy
 const axe = {
 	name: "axe",
@@ -91,7 +105,7 @@ const shovel = {
 };
 const pickAxe = {
 	name: "pick-axe",
-	ablity: ["rock"],
+	ablity: ["rock", "gold", "brick"],
 	use: false,
 };
 const cloudCollecter = {

@@ -81,6 +81,7 @@ span {
 	width: 100%;
 }
 
+/* blocks img */
 .ground {
 	background: url("/img/soil.jpg") center / cover no-repeat;
 }
@@ -101,4 +102,10 @@ span {
 }
 .rock {
 	background: url("/img/rock.png") center / cover no-repeat;
+}
+.gold {
+	background: url("/img/gold-block.png") center / cover no-repeat;
+}
+.brick {
+	background: url("/img/block-brickk.png") center / cover no-repeat;
 }
