@@ -17,9 +17,7 @@ body {
 	display: flex;
 	height: 100vh;
 }
-span {
-	font-size: 1.5rem;
-}
+
 /* lading page */
 .landing-page {
 	background: url("/img/welcome.jpg") no-repeat center center/cover;
@@ -39,14 +37,14 @@ span {
 .tools {
 	display: flex;
 	flex-direction: column;
-	height: 45%;
+	height: 350px;
 	align-items: center;
 }
 .tools img {
 	border-right: black 2px solid;
 	border-bottom: black 2px solid;
-	width: 20%;
-	height: 10%;
+	width: 50px;
+	height: 50px;
 	margin-bottom: 10%;
 }
 img:hover {
@@ -61,7 +59,7 @@ img:hover {
 	filter: drop-shadow(0 0 5px black); /* FF~35 */
 	filter: drop-shadow(0 0 0 5px black); /* MDN */
 }
-.btn {
+.reset {
 	padding: 15px 5px;
 	background-color: #fff;
 }
@@ -72,7 +70,7 @@ img:hover {
 }
 /* building-blocks */
 .building-blocks {
-	height: 25%;
+	height: 200px;
 	display: grid;
 	grid-template-columns: repeat(3, auto);
 	grid-template-rows: repeat(3, 70px);
@@ -84,11 +82,11 @@ img:hover {
 
 /* world css */
 .world {
-	min-width: 1500px;
+	min-width: 1800px;
 	width: 85vw;
 	background-color: #87cefa;
 	margin: auto;
-	height: 100%;
+	height: 100vh;
 	display: grid;
 	grid-template-columns: repeat(60, auto);
 	grid-template-rows: repeat(60, auto);
@@ -143,7 +141,7 @@ img:hover {
 		display: none;
 	}
 	.world {
-		min-width: 0px;
+		min-width: 200px;
 		width: 100vw;
 		background-color: #87cefa;
 		margin: 0;
@@ -178,7 +176,8 @@ img:hover {
 		grid-template-rows: repeat(3, 20px);
 		position: absolute;
 		top: 0;
-		left: 207px;
+		left: 157px;
+		float: right;
 	}
 	.building-blocks img {
 		width: 20px;
@@ -186,5 +185,10 @@ img:hover {
 	}
 	span {
 		font-size: 0.8rem;
+	}
+	.btn {
+		padding: 0px;
+		font-size: 0.5rem;
+		float: right;
 	}
 }
