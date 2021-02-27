@@ -75,6 +75,7 @@ function drawGold() {
 	for (let i = 1; i < 30; i++) {
 		for (let j = 0; j < 7; j++) {
 			grid[groundHeight - i][40].classList.add("gold");
+			grid[groundHeight - i][41].classList.add("gold");
 		}
 	}
 }
@@ -176,9 +177,8 @@ function build(e) {
 	let sibling = block.previousElementSibling;
 	let blockAmount = toolArr.find((t) => t.ablity.includes(sibling.id));
 	console.log(blockAmount[sibling.id]);
-	if (blockAmount[sibling.id] < 1)
-		// no blocks exit function
-		return;
-	e.target.classList.add(`${sibling.id}`);
-	sibling.textContent = `${--blockAmount[sibling.id]}`; //update
+	if (blockAmount[sibling.id] > 0) {
+		e.target.classList.add(`${sibling.id}`);
+		sibling.textContent = `${--blockAmount[sibling.id]}`; //update
+	}
 }

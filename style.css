@@ -5,6 +5,12 @@
 	font-style: normal;
 }
 
+* {
+	padding: 0;
+	box-sizing: border-box;
+	margin: 0;
+}
+
 body {
 	/* cursor: url(img/shovel.png), auto; */
 	display: flex;
@@ -16,7 +22,6 @@ span {
 }
 /* Inventroy css */
 .inventory {
-	border: black solid 3px;
 	width: 15vw;
 	text-align: center;
 	background-color: #4682b4;
@@ -24,9 +29,8 @@ span {
 .tools {
 	display: flex;
 	flex-direction: column;
-	height: 50%;
+	height: 45%;
 	align-items: center;
-	border: black solid 3px;
 }
 .tools img {
 	border-right: black 2px solid;
@@ -54,7 +58,6 @@ img:hover {
 }
 /* building-blocks */
 .building-blocks {
-	border: black solid 3px;
 	height: 25%;
 	display: grid;
 	grid-template-columns: repeat(3, auto);
@@ -76,7 +79,6 @@ img:hover {
 	grid-template-columns: repeat(60, auto);
 	grid-template-rows: repeat(60, auto);
 	grid-gap: 0;
-	/* max-height: 100%; */
 }
 
 /* normal block */
@@ -112,4 +114,63 @@ img:hover {
 }
 .brick {
 	background: url("/img/block-brickk.png") center / cover no-repeat;
+}
+
+/* responsive for mobile */
+@media only screen and (max-width: 1200px) {
+	body {
+		/* cursor: url(img/shovel.png), auto; */
+		display: block;
+		height: 100vh;
+		font-family: "Minecraft-font";
+	}
+	h1,
+	h2 {
+		display: none;
+	}
+	.world {
+		min-width: 0px;
+		width: 100vw;
+		background-color: #87cefa;
+		margin: 0;
+		height: 90vh;
+	}
+	.inventory {
+		border: black solid 1px;
+		height: 10vh;
+		background-color: #4682b4;
+		width: 100vw;
+		font-size: 10px;
+		position: relative;
+	}
+	.tools {
+		padding-top: 10px;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		width: 125px;
+		height: 25px;
+	}
+	.tools img {
+		border-right: black 2px solid;
+		border-bottom: black 2px solid;
+		width: 30px;
+		height: 30px;
+	}
+	.building-blocks {
+		height: 25%;
+		display: grid;
+		grid-template-columns: repeat(3, auto);
+		grid-template-rows: repeat(3, 20px);
+		position: absolute;
+		top: 0;
+		left: 207px;
+	}
+	.building-blocks img {
+		width: 20px;
+		height: 20px;
+	}
+	span {
+		font-size: 0.8rem;
+	}
 }
