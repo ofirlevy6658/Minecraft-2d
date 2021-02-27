@@ -4,10 +4,11 @@ const groundHeight = 50; //the top height of ground use to build trees and stuff
 const width = 60;
 const height = 60;
 const resetBtn = document.querySelector(".reset");
-resetBtn.addEventListener("click", reset);
+
+start();
 
 //init the world grid consists of divs
-const initMatrix = () => {
+function initMatrix() {
 	for (let i = 0; i < height; i++) {
 		grid[i] = [];
 		for (let j = 0; j < width; j++) {
@@ -17,9 +18,9 @@ const initMatrix = () => {
 			world.appendChild(div);
 		}
 	}
-};
+}
 
-const initGround = () => {
+function initGround() {
 	for (let i = groundHeight; i < height; i++) {
 		for (let j = 0; j < width; j++) {
 			if (i === groundHeight)
@@ -29,9 +30,9 @@ const initGround = () => {
 			world.appendChild(grid[i][j]);
 		}
 	}
-};
+}
 
-const drawTree = (numOfTree) => {
+function drawTree(numOfTree) {
 	const nums = new Set();
 	let random = Math.floor(Math.random() * (width - 3)) + 2; // random place in the ground to build tree
 	while (numOfTree > 0) {
@@ -54,8 +55,8 @@ const drawTree = (numOfTree) => {
 		numOfTree--;
 		random > 33 ? (random = 3) : (random += 5);
 	}
-};
-const drawCloud = (numOfCloud) => {
+}
+function drawCloud(numOfCloud) {
 	while (numOfCloud > 0) {
 		let randomRow = Math.floor(Math.random() * 5) + 3; // random place in the sky to build cloud
 		let randomCol = Math.floor(Math.random() * (width - 8)) + 4;
@@ -66,7 +67,7 @@ const drawCloud = (numOfCloud) => {
 		}
 		numOfCloud--;
 	}
-};
+}
 function drawRock() {
 	for (let i = 1; i < 30; i++) {
 		grid[groundHeight - i][0].classList.add("rock");
@@ -88,14 +89,6 @@ function drawHouse() {
 		}
 	}
 }
-
-initMatrix();
-initGround();
-drawTree(5);
-drawCloud(25);
-drawRock();
-drawGold();
-drawHouse();
 
 // inventroy
 const axe = {
@@ -184,7 +177,7 @@ function build(e) {
 		sibling.textContent = `${--blockAmount[sibling.id]}`; //update
 	}
 }
-
+resetBtn.addEventListener("click", reset);
 function reset() {
 	let blocksZero = document.querySelectorAll(".building-blocks span");
 	blocksZero.forEach((b) => (b.textContent = 0));
@@ -216,4 +209,13 @@ function reset() {
 		t[t.ablity[1]] = 0;
 		t[t.ablity[2]] = 0;
 	});
+}
+function start() {
+	initMatrix();
+	initGround();
+	drawTree(5);
+	drawCloud(25);
+	drawRock();
+	drawGold();
+	drawHouse();
 }
