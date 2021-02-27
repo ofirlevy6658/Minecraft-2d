@@ -28,17 +28,17 @@ span {
 	align-items: center;
 	border: black solid 3px;
 }
-.tools > img {
+.tools img {
 	border-right: black 2px solid;
 	border-bottom: black 2px solid;
 	width: 20%;
 	height: 10%;
 	margin-bottom: 10%;
 }
-.tools > img:hover {
+img:hover {
 	background-color: #9c9c9c;
 	cursor: pointer;
-	zoom: 150%;
+	zoom: 110%;
 	/* make the images bold creadit to stackoverflow */
 	-webkit-filter: drop-shadow(
 		0 0 5px black
@@ -50,7 +50,7 @@ span {
 
 [data-current="true"] {
 	background-color: #9c9c9c;
-	zoom: 150%;
+	zoom: 110%;
 }
 /* building-blocks */
 .building-blocks {
@@ -60,6 +60,10 @@ span {
 	grid-template-columns: repeat(3, auto);
 	grid-template-rows: repeat(3, 70px);
 }
+
+/* .building-blocks img {
+	zoom: 110%;
+} */
 
 /* world css */
 .world {

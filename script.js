@@ -73,8 +73,9 @@ function drawRock() {
 }
 function drawGold() {
 	for (let i = 1; i < 30; i++) {
-		grid[groundHeight - i][40].classList.add("gold");
-		grid[groundHeight - i][41].classList.add("gold");
+		for (let j = 0; j < 7; j++) {
+			grid[groundHeight - i][40].classList.add("gold");
+		}
 	}
 }
 function drawHouse() {
@@ -113,9 +114,9 @@ const cloudCollecter = {
 	ablity: ["cloud"],
 	use: false,
 };
-const toolArr = [axe, shovel, pickAxe, cloudCollecter];
 
-const tools = document.querySelectorAll(".tools > img");
+const toolArr = [axe, shovel, pickAxe, cloudCollecter];
+const tools = document.querySelectorAll("img"); //element and mining tools
 // select tool function
 tools.forEach((tool) =>
 	tool.addEventListener("click", () => {
@@ -123,7 +124,6 @@ tools.forEach((tool) =>
 		// document.body.style.cursor = "url('img/axe-tool-outline.svg')";
 		tool.setAttribute("data-current", "true"); //focus to the desire tool
 		//switch on the current tool in use
-		console.log(tool);
 		toolArr.forEach((el) => {
 			tool.getAttribute("data-tool") == el.name
 				? (el.use = true)
@@ -135,7 +135,12 @@ tools.forEach((tool) =>
 //lisner for the matrix
 for (let i = 0; i < width; i++) {
 	for (let j = 0; j < width; j++) {
-		grid[i][j].addEventListener("click", mining);
+		grid[i][j].addEventListener("click", (e) => {
+			//if we have value its mean the block has img on it so we send it to mining function
+			if (e.target.classList[1]) mining(e);
+			// else we selected clean div sky (no class of img)
+			else build(e);
+		});
 	}
 }
 
@@ -143,19 +148,37 @@ function mining(e) {
 	let block = e.target;
 	//check if the tool has the ablity to mine the mineral
 	let currentTool = toolArr.find((tool) => tool.use); // get the tool that currently in use
+	let blockClassName = block.classList[1];
 	if (!currentTool) return; //mean we dont target any tool we stop the running to avoid errors
-	if (currentTool.ablity.includes(block.classList[1])) {
-		block.style.visibility = "hidden";
-		currentTool[block.classList[1]] === undefined // insert the bulding block to the obejct
-			? (currentTool[block.classList[1]] = 1)
-			: currentTool[block.classList[1]]++;
-		updateBlockS(block.classList[1], currentTool); //send the name of the block that was click and the tool
+	if (currentTool.ablity.includes(blockClassName)) {
+		block.classList.remove(`${blockClassName}`);
+		currentTool[blockClassName] === undefined // insert the bulding block to the obejct
+			? (currentTool[blockClassName] = 1)
+			: currentTool[blockClassName]++;
+		updateBlockS(blockClassName, currentTool); //send the name of the block that was click and the tool
 	}
 }
 
 function updateBlockS(block, tool) {
 	let blockId = document.querySelector(`#${block}`);
-	console.log(blockId);
-	console.log(tool[block]);
 	blockId.textContent = `${tool[block]}`;
+}
+const blocks = document.querySelectorAll(".building-blocks img");
+
+function build(e) {
+	let block;
+	blocks.forEach((b) => {
+		if (b.getAttribute("data-current") == "true") block = b; // block keep the current block that target
+	});
+	if (!block)
+		// no bulding block selected exit the function
+		return;
+	let sibling = block.previousElementSibling;
+	let blockAmount = toolArr.find((t) => t.ablity.includes(sibling.id));
+	console.log(blockAmount[sibling.id]);
+	if (blockAmount[sibling.id] < 1)
+		// no blocks exit function
+		return;
+	e.target.classList.add(`${sibling.id}`);
+	sibling.textContent = `${--blockAmount[sibling.id]}`; //update
 }
