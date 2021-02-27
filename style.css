@@ -19,10 +19,11 @@ body {
 }
 
 /* lading page */
-.landing-page {
+/* .landing-page {
 	background: url("/img/welcome.jpg") no-repeat center center/cover;
+	z-index: 1;
 	width: 100vw;
-}
+} */
 .landing-page form {
 	border: black solid;
 }
@@ -186,7 +187,7 @@ img:hover {
 	span {
 		font-size: 0.8rem;
 	}
-	.btn {
+	.reset {
 		padding: 0px;
 		font-size: 0.5rem;
 		float: right;
