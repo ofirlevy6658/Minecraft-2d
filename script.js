@@ -3,6 +3,8 @@ let grid = []; // all the dives
 const groundHeight = 50; //the top height of ground use to build trees and stuff
 const width = 60;
 const height = 60;
+const resetBtn = document.querySelector(".reset");
+resetBtn.addEventListener("click", reset);
 
 //init the world grid consists of divs
 const initMatrix = () => {
@@ -94,6 +96,7 @@ drawCloud(25);
 drawRock();
 drawGold();
 drawHouse();
+
 // inventroy
 const axe = {
 	name: "axe",
@@ -176,9 +179,41 @@ function build(e) {
 		return;
 	let sibling = block.previousElementSibling;
 	let blockAmount = toolArr.find((t) => t.ablity.includes(sibling.id));
-	console.log(blockAmount[sibling.id]);
 	if (blockAmount[sibling.id] > 0) {
 		e.target.classList.add(`${sibling.id}`);
 		sibling.textContent = `${--blockAmount[sibling.id]}`; //update
 	}
+}
+
+function reset() {
+	let blocksZero = document.querySelectorAll(".building-blocks span");
+	blocksZero.forEach((b) => (b.textContent = 0));
+	for (let i = 0; i < height; i++) {
+		for (let j = 0; j < width; j++) {
+			grid[i][j].remove();
+		}
+	}
+	initMatrix();
+	initGround();
+	drawTree(5);
+	drawCloud(25);
+	drawRock();
+	drawGold();
+	drawHouse();
+	for (let i = 0; i < width; i++) {
+		for (let j = 0; j < width; j++) {
+			grid[i][j].addEventListener("click", (e) => {
+				//if we have value its mean the block has img on it so we send it to mining function
+				if (e.target.classList[1]) mining(e);
+				// else we selected clean div sky (no class of img)
+				else build(e);
+			});
+		}
+	}
+	tools.forEach((el) => el.setAttribute("data-current", "false"));
+	toolArr.forEach((t) => {
+		t[t.ablity[0]] = 0;
+		t[t.ablity[1]] = 0;
+		t[t.ablity[2]] = 0;
+	});
 }

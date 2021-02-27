@@ -9,23 +9,33 @@
 	padding: 0;
 	box-sizing: border-box;
 	margin: 0;
+	font-family: "Minecraft-font";
 }
 
 body {
 	/* cursor: url(img/shovel.png), auto; */
 	display: flex;
 	height: 100vh;
-	font-family: "Minecraft-font";
 }
 span {
 	font-size: 1.5rem;
 }
+/* lading page */
+.landing-page {
+	background: url("/img/welcome.jpg") no-repeat center center/cover;
+	width: 100vw;
+}
+.landing-page form {
+	border: black solid;
+}
+
 /* Inventroy css */
 .inventory {
 	width: 15vw;
 	text-align: center;
 	background-color: #4682b4;
 }
+
 .tools {
 	display: flex;
 	flex-direction: column;
@@ -50,6 +60,10 @@ img:hover {
 	assuming the content is written in black */
 	filter: drop-shadow(0 0 5px black); /* FF~35 */
 	filter: drop-shadow(0 0 0 5px black); /* MDN */
+}
+.btn {
+	padding: 15px 5px;
+	background-color: #fff;
 }
 
 [data-current="true"] {
